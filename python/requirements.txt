@@ -1,0 +1,7 @@
+﻿torch
+numpy
+facenet_pytorch
+Pillow
+opencv-python
+cmake
+face-recognition

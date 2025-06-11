@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.agora.facerecovery.controller.MainController">
+    <top>
+        <ToolBar>
+            <Button text="Browse" onAction="#onBrowse"/>
+            <Button text="Run" onAction="#onRun"/>
+            <Button text="Pause" onAction="#onPause"/>
+            <Button text="Stop" onAction="#onStop"/>
+            <Button text="Continue" fx:id="resumeButton" onAction="#onResumeFromStop" disable="true"/>
+            <Button text="Export CSV" onAction="#onExportCSV"/>
+            <Button text="Export Excel" onAction="#onExportExcel"/>
+            <Separator orientation="VERTICAL"/>
+            <Button text="Forward" onAction="#onPrev"/>
+            <Button text="Back" onAction="#onNext"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="Оригинал"/>
+                        <ImageView fx:id="originalImageView" fitWidth="200" preserveRatio="true"/>
+                        <Label fx:id="originalFileNameLabel"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="С очками"/>
+                        <ImageView fx:id="withGlassesImageView" fitWidth="200" preserveRatio="true"/>
+                        <Label fx:id="glassesScoreLabel"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="GAN"/>
+                        <ImageView fx:id="ganImageView" fitWidth="200" preserveRatio="true"/>
+                        <Label fx:id="ganScoreLabel"/>
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="MTCNN"/>
+                        <ImageView fx:id="mtcnnImageView" fitWidth="200" preserveRatio="true"/>
+                        <Label fx:id="mtcnnScoreLabel"/>
+                    </VBox>
+                </HBox>
+
+                <ProgressBar fx:id="progressBar" prefWidth="600" progress="0.0"/>
+                <Label fx:id="progressLabel" text="Готов к работе"/>
+                <Label text="Результаты сравнения"/>
+                <TableView fx:id="resultsTable" prefHeight="250">
+                    <columns>
+                        <TableColumn fx:id="fileNameCol" text="Файл"/>
+                        <TableColumn fx:id="ganScoreCol" text="GAN Score"/>
+                        <TableColumn fx:id="ganTimeCol" text="GAN Время"/>
+                        <TableColumn fx:id="mtcnnScoreCol" text="MTCNN Score"/>
+                        <TableColumn fx:id="mtcnnTimeCol" text="MTCNN Время"/>
+                        <TableColumn fx:id="errorCol" text="Ошибки"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
